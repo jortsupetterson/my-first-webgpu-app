@@ -13,7 +13,7 @@ const page = html`
       <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-      <canvas width="1024" height="1024"> </canvas>
+      <canvas width="256" height="256"> </canvas>
       <script type="module">
         const canvas = document.querySelector("canvas");
         try {
@@ -57,6 +57,21 @@ const page = html`
             code: ${JSON.stringify(cellShader.toString())},
           });
 
+          const cellPipeline = device.createRenderPipeline({
+            label: "Cell pipeline",
+            layout: "auto",
+            vertex: {
+              module: cellShaderModule,
+              entryPoint: "vertexMain",
+              buffers: [vertexBufferLayout],
+            },
+            fragment: {
+              module: cellShaderModule,
+              entryPoint: "fragmentMain",
+              targets: [{ format: canvasFormat }],
+            },
+          });
+
           const encoder = device.createCommandEncoder();
           const pass = encoder.beginRenderPass({
             colorAttachments: [
@@ -68,6 +83,9 @@ const page = html`
               },
             ],
           });
+          pass.setPipeline(cellPipeline);
+          pass.setVertexBuffer(0, vertexBuffer);
+          pass.draw(vertices.length / 2);
           pass.end();
           device.queue.submit([encoder.finish()]);
         } catch (err) {
