@@ -96,5 +96,5 @@ try {
   pass.end();
   device.queue.submit([encoder.finish()]);
 } catch (err) {
-  document.body.insertAdjacentHTML("afterend", "<p>" + err + "</p>");
+  document.body.insertAdjacentHTML("afterend", "<span>" + err + "</span>");
 }
