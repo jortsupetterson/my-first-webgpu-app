@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "account_id": "648770119c6d03ac0fe868771cf5df1b",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "build": {
+    "watch_dir": "./src",
+    "command": "npm run build",
+    "cwd": "."
+  }
+}

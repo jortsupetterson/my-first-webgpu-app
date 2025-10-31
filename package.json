@@ -4,14 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node ssg.js"
+    "build": "node ./src/ssg.js",
+    "start": "npx wrangler dev",
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy"
   },
-  "keywords": [],
+  "keywords": [
+    "webgpu",
+    "juniordev"
+  ],
   "author": "Jori Lehtinen",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
     "esbuild": "^0.25.11",
-    "html-minifier-terser": "^7.2.0"
+    "html-minifier-terser": "^7.2.0",
+    "wrangler": "^4.45.3"
   }
 }
